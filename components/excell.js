@@ -26,10 +26,9 @@ class Excell extends React.Component {
         const {data} = this.props
         
         let dataSet = []
-
+        let i = 1;
         for (let [key, value] of Object.entries(data.item)) {
             let payload = {}
-
             payload.name = data.name
             let street = value.payload.split('|R04~')[1].split('|')[0]
             payload.street = street;
@@ -37,6 +36,9 @@ class Excell extends React.Component {
             payload.city = city;
             let postal = value.payload.split('|R07~')[1].split('|')[0]
             payload.postal = postal;
+            payload.line = i;
+            i++;
+            payload.notes = '';
             dataSet.push(payload)
         }
         this.setState({dataSet1: dataSet})
@@ -54,6 +56,8 @@ class Excell extends React.Component {
                     <ExcelColumn label="Street" value="street"/>
                     <ExcelColumn label="City" value="city"/>
                     <ExcelColumn label="Postal" value="postal"/>
+                    <ExcelColumn label="Line Number" value="line"/>
+                    <ExcelColumn label="Notes" value="notes"/>
                 </ExcelSheet>
             </ExcelFile>
         );
