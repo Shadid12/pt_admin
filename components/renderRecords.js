@@ -1,4 +1,5 @@
 import React from 'react'
+import Excell from './excell';
 
 const RenderRecords = (props) => {
     const [list, setList] = React.useState(null);
@@ -8,10 +9,6 @@ const RenderRecords = (props) => {
             setList(records)
         }
     });
-
-    const downLoadXL = (item) => {
-        console.log('---->>>> DATA', item);
-    } 
 
     if(list) {
         let array = []
@@ -29,7 +26,7 @@ const RenderRecords = (props) => {
                         return (
                             <div key={item.name}>
                                 <span><b>Name: {item.name}</b></span> 
-                                <button onClick={() => {downLoadXL(item)}}>Download xl</button>
+                                <Excell data={item}/>
                             </div>
                         )
                     })

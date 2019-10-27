@@ -7,7 +7,6 @@ const Data = (props) => {
     const [call, setCall] = React.useState(false);
     React.useEffect(() => {
        if(props.firebase.app !== null && !call) {
-            console.log('Calling')
             props.firebase.getData();
             setCall(true)
        } else {
