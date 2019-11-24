@@ -56,6 +56,7 @@ class Excell extends React.Component {
 
     render() {
         return (
+            <React.Fragment>
             <ExcelFile element={<Button 
                     variant="contained" 
                     color="primary"
@@ -71,6 +72,7 @@ class Excell extends React.Component {
                     <ExcelColumn label="Scaned Data" value="original"/>
                 </ExcelSheet>
             </ExcelFile>
+            </React.Fragment>
         );
     }
 }

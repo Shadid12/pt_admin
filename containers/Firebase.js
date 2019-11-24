@@ -35,11 +35,17 @@ export const FirebaseContextProvider = (props) => {
         })
     }
 
+    const deleteData = async() => {
+      const {app} = state;
+      app.database().ref('data').remove();
+    }
+
     return (
         <FirebaseContext.Provider
           value={{
             ...state,
-            getData: getData
+            getData: getData,
+            deleteData: deleteData
           }}
         >
           {props.children}
