@@ -29,26 +29,28 @@ class Excell extends React.Component {
         let i = 1;
         for (let [key, value] of Object.entries(data.item)) {
             let payload = {}
-            let street = value.payload.split('|R04~')[1] ? 
+            if(value.payload) {
+                let street = value.payload.split('|R04~')[1] ? 
                 value.payload.split('|R04~')[1].split('|')[0] : 'NaN'
-            payload.street = street;
-            let city = value.payload.split('|R06~')[1] ? 
-                value.payload.split('|R06~')[1].split('|')[0] : 'NaN'
-            payload.city = city;
-            let postal = value.payload.split('|R07~')[1] ? 
-                value.payload.split('|R07~')[1].split('|')[0] : 'NaN'
-            // provience
-            payload.prov = 'ON'
-            payload.postal = postal;
-            // original data
-            payload.original = value.payload
-            // pin
-            let pin = value.payload.split('|S02~')[1] ?  
-                value.payload.split('|S02~')[1].split('|')[0] : 'NaN'
-            payload.pin = pin
-            payload.line = i;
-            i++;
-            payload.notes = '';
+                payload.street = street;
+                let city = value.payload.split('|R06~')[1] ? 
+                    value.payload.split('|R06~')[1].split('|')[0] : 'NaN'
+                payload.city = city;
+                let postal = value.payload.split('|R07~')[1] ? 
+                    value.payload.split('|R07~')[1].split('|')[0] : 'NaN'
+                // provience
+                payload.prov = 'ON'
+                payload.postal = postal;
+                // original data
+                payload.original = value.payload
+                // pin
+                let pin = value.payload.split('|S02~')[1] ?  
+                    value.payload.split('|S02~')[1].split('|')[0] : 'NaN'
+                payload.pin = pin
+                payload.line = i;
+                i++;
+                payload.notes = '';
+            }
             dataSet.push(payload)
         }
         this.setState({dataSet1: dataSet})
